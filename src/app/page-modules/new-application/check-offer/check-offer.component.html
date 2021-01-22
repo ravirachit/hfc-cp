@@ -1,0 +1,116 @@
+<div class="app-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-container">
+        <div align="center">
+            <h3>Congratulations Ravi Kumar</h3>
+            <h4>You are just 2 steps away from instant provisional approval of your loan application.</h4>
+            <h5>Choose an offer and proceed for approval.</h5>
+        </div>
+        <div class="row main_header_row">
+            <div class="col-sm-6 flex_display">
+                <p class="flex_p">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" class="font_weight_bold">add</mat-icon>
+                </p>ADD CO-APPLICANT
+            </div>
+            <div class="col-sm-6">
+                <div class="flex_display float_right_sty">
+                    <p class="flex_p">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 21px;">edit
+                        </mat-icon>
+                    </p><span>Edit Income Details</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 margin_top21">
+                <mat-card class="mat_card_for_avial_loan">
+                    <h4 class="theme_color">Home Loan</h4>
+                    <p class="avail_loan_upto">Avail loan amount max upto</p><br>
+                    <h3 class="theme_color">₹18,00,000</h3><br>
+                    <p class="perc_section theme_color">@ 7.85%</p>
+                </mat-card>
+                <mat-card class="mat_card_final_loan_offer">
+                    <div align="center">
+                        <h3 class="theme_color">Your Final Loan Offer: ₹18,00,000</h3>
+                    </div>
+                    <div class="row margin_top22" align="center">
+                        <div class="col-sm-4">
+                            <span>Monthly EMI: </span>
+                            <span class="theme_color final_amt_font">₹20,485</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>Interest Rate: </span>
+                            <span class="theme_color final_amt_font">7.85%</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>Fees & Charges: </span>
+                            <span class="theme_color final_amt_font">₹3,717</span>
+                        </div>
+                    </div>
+                </mat-card>
+                <div style="display:flex;justify-content:space-between">
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                    <div class="triangle_up"></div>
+                </div>
+                <div class="col-sm-12 terms_condition" align="center">
+                    <div class="footer_text flex_display" style="justify-content: center;">
+                        <p>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" class="info_icon">info</mat-icon>
+                        </p>
+                        <span>You can increase your eligibility amount by adding co-applicant or additional income or
+                            both</span>
+                    </div>
+                    <div class="btn-section">
+                        <button mat-button color="primary" class="btn">Accept Offer and Proceed</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <mat-card class="mat_card_for_loan_selection">
+                    <h3 class="">Customise Your Home Loan</h3>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Required Amount</label>
+                            <ng5-slider [(value)]="value1" [options]="options1"></ng5-slider>
+                        </div>
+                        <div class="col-sm-12 margin_top65">
+                            <label>Required Tenure (Months)</label>
+                            <ng5-slider [(value)]="value2" [options]="options2"></ng5-slider>
+                        </div>
+                        <div class="col-sm-12 margin_top65">
+                            <label>Interest Rate</label>
+                            <ng5-slider [(value)]="value3" [options]="options3"></ng5-slider>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

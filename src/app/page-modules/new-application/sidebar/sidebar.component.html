@@ -1,0 +1,85 @@
+
+<mat-drawer-container class="mob-side-nav-container mob-sidebar">
+  <mat-drawer #appDrawer mode="side" opened="true" style="position: fixed;">
+    <div class="logo-section">
+      <img src="assets/new_images/housing-logo.png">
+    </div>
+    <div class="sidebar">
+      <div class="sidebarwrap">
+        <div class="pagelink static_line">
+          <div class="bulet"></div>
+          <div align="center" [routerLink]="['/dashboard/provide-details']" class="navigation_link">
+            <img src="assets/new_images/user.svg" width="24px">
+            <div>Provide Details</div>
+          </div>
+        </div>
+
+        <div class="pagelink pageactive">
+          <div class="bulet buletactive"></div>
+          <div align="center" [routerLink]="['/dashboard/check-offer']" class="navigation_link">
+            <img src="assets/new_images//money-bag.svg">
+            <div>Check Offer</div>
+          </div>
+        </div>
+
+        <div class="pagelink">
+          <div class="bulet logd"></div>
+          <div align="center">
+            <img src="assets/new_images/agreement.svg">
+            <div>Make Payment</div>
+          </div>
+        </div>
+
+        <div class="pagelink navigation_link" [routerLink]="['/dashboard/upload-document']">
+          <div class="bulet logd"></div>
+          <div align="center">
+            <img src="assets/new_images/loandetails.svg">
+            <div>Upload Documents</div>
+          </div>
+        </div>
+
+        <div class="pagelink ">
+          <div class="bulet logd"></div>
+          <div align="center">
+            <img src="assets/new_images/loandetails.svg">
+            <div>Get Provisional Letter</div>
+          </div>
+        </div>
+
+        <!-- <div class="pagelink logout_Link">
+          <div class="bulet logd"></div>
+          <div align="center" (click)="logout()">
+            <img src="assets/new_images/logout.svg">
+            <div>Logout</div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header></app-header>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
+<!-- <mat-drawer-container class="mob-side-nav-container mob-sidebar">
+  <mat-drawer #appDrawer mode="over" opened="false">
+  <ul class="sidebar-menu new-mnnu-main mob-sidebar-margin-top" data-widget="tree">
+    <li class="treeview" *ngFor="let subModule of subMenuList">
+      <a routerLinkActive="active" [routerLink]="[subModule.path,loanNumber]">
+        <i [ngClass]="'mdi1 ' + subModule.screenName"></i><span>{{subModule.screenDisplayName}} </span>
+      </a>
+    </li>
+  </ul>
+  <div class="open-btn1">
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <i class="fa fa-arrow-right"
+        aria-hidden="true"></i>
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </a>
+  </div>
+  </mat-drawer>
+  <mat-drawer-content>
+  </mat-drawer-content>
+</mat-drawer-container> -->

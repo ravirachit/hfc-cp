@@ -1,0 +1,84 @@
+<div class="app-wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="main-container">
+    <h3>Upload Document</h3><br>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="hiddenFileInput">
+          <input #file type="file" (change)="preview(file.files)" name="theFile" />
+          <p class="inner_content"><mat-icon aria-hidden="false" aria-label="Example home icon" class="upload_icon">cloud_upload
+          </mat-icon><br>Drag and drop or <a class="theme_color"><u>browse</u></a> your files</p>
+        </div>
+        <div class="col-sm-11 margin_top25">
+          <mat-form-field appearance="fill" style="margin-top: 6px;">
+            <mat-label>Document Type<span class="txt-red">*</span></mat-label>
+            <mat-select>
+              <mat-option *ngFor="let docType of documentType" [value]="docType.value">
+                {{docType.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-11">
+          <mat-form-field>
+            <input matInput placeholder="Document Name" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div id="thumb-output" class="text-center">
+          <img src="assets/new_images/aadhar.jpg" *ngIf="!isFileUpload" style="opacity: .9;" class="uploaded_img">
+          <img [src]="imgURL" *ngIf="isFileUpload && imgURL !==null" class="uploaded_img">
+        </div>
+        <div class="doc-progress" *ngIf="progress">
+          <div class="doc-progress-bar" [style.width]="progress + '%'">{{progress}}%</div>
+        </div>
+        <div class="col-sm-12" align="center">
+          <button mat-button color="primary" class="btn">Upload Document</button>
+        </div>
+      </div>
+    </div>  
+    <h4>Uploaded Document List</h4>
+    <div class="flex_card_img_list">
+      <mat-card class="card_img_list">
+        <div class="row">
+          <div class="col-sm-7 uploaded_bg_img" style="background-image: url('assets/new_images/aadhar.jpg');">
+          </div>
+          <div class="col-sm-5">
+            <p class="p_label">Doc Type:</p><p class="p_value">Aadhar Card</p>
+            <p class="p_label">Doc Name:</p><p class="p_value">Aadhar Document</p>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="card_img_list">
+        <div class="row">
+          <div class="col-sm-7 uploaded_bg_img" style="background-image: url('assets/new_images/aadhar.jpg');">
+          </div>
+          <div class="col-sm-5">
+            <p class="p_label">Doc Type:</p><p class="p_value">Aadhar Card</p>
+            <p class="p_label">Doc Name:</p><p class="p_value">Aadhar Document</p>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="card_img_list">
+        <div class="row">
+          <div class="col-sm-7 uploaded_bg_img" style="background-image: url('assets/new_images/aadhar.jpg');">
+          </div>
+          <div class="col-sm-5">
+            <p class="p_label">Doc Type:</p><p class="p_value">Aadhar Card</p>
+            <p class="p_label">Doc Name:</p><p class="p_value">Aadhar Document</p>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="card_img_list">
+        <div class="row">
+          <div class="col-sm-7 uploaded_bg_img" style="background-image: url('assets/new_images/aadhar.jpg');">
+          </div>
+          <div class="col-sm-5">
+            <p class="p_label">Doc Type:</p><p class="p_value">Aadhar Card</p>
+            <p class="p_label">Doc Name:</p><p class="p_value">Aadhar Document</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>

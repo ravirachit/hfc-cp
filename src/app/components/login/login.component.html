@@ -1,0 +1,27 @@
+<div class="body-background">
+    <div class="main_section">
+    <div class="login-section">
+        <div class="login-container-inside-section">
+            <div class="logo-image-section" align="center">
+                <img src="assets/new_images/housing-logo.png">
+            </div>
+            <h2 class="input_header">Enter your mobile number</h2>
+            <p class="login-content"><i>We will send you a SMS to verify your mobile number</i></p>
+            <form [formGroup]="login_form">
+                <div class="login-input-section">
+                    <div class="form-group userID-sec">
+                        <input placeholder="Mobile Number" formControlName="mobile_number" maxlength="10" [ngClass]="{ 'is-invalid': isLogin && login_form.controls.mobile_number.errors }">
+                    </div>
+                </div>
+                <p *ngIf="isLogin && login_form.controls.mobile_number.errors" class="error_msg">
+                    <span *ngIf="login_form.controls.mobile_number.errors.required">This field is required</span>
+                </p>
+                <div class="btn-section">
+                    <button mat-button color="primary" class="login-btn" (click)="onVerify()">Verify</button>
+                </div>
+            </form>
+            <p class="login-footer">@2020, All Rights Reserved.</p>
+        </div>
+    </div>
+    </div>
+</div>

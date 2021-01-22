@@ -1,0 +1,192 @@
+<!-- <h3 class="margin_top25">Provide few details for calculating your eligibility</h3>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>What is your residency status?</p>
+                <div class="radio-toolbar">
+                    <ng-container *ngFor="let resType of residenceTypeData;let i=index;">
+                        <input type="radio" id="{{resType.typeDetailID}}" name="residanceTypeValue" value="{{resType.typeDetailID}}" [checked]="i==0"
+                        (change)="onChangeResidencyType($event.target.value)">
+                    <label for="{{resType.typeDetailID}}">{{resType.typeDetailDisplayText}}</label>
+                    </ng-container>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="col-sm-3">
+                <p>Gender</p>
+                <div class="radio-toolbar">
+                    <ng-container *ngFor="let gender of genderTypeData;let i=index;">
+                        <input type="radio" id="{{gender.typeDetailID}}" name="genderTypeValue" value="{{gender.typeDetailID}}" [checked]="i==0"
+                        (change)="onChangeResidencyType($event.target.value)">
+                    <label for="{{gender.typeDetailID}}">{{gender.typeDetailDisplayText}}</label>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <p>Proposed Property Owner</p>
+                <div class="radio-toolbar">
+                    <input type="radio" id="yes" name="isProposedPropertyOwner" value="" checked>
+                    <label for="yes">Yes</label>
+    
+                    <input type="radio" id="no" name="isProposedPropertyOwner" value="">
+                    <label for="no">No</label>
+                </div>
+            </div>
+    
+        </div>
+    
+        <form [formGroup]="thirdStep" (ngSubmit)="onPersonalDataSubmit()">
+            <div class="row innter_div_input_margin">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput alphabetsOnly placeholder="First Name" formControlName="co_first_name"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_first_name.errors }" required
+                            maxlength="200">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_first_name.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_first_name.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.FIRST_NAME }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput alphabetsOnly placeholder="Middle Name" formControlName="co_middle_name"
+                            maxlength="200">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput alphabetsOnly placeholder="Last Name" formControlName="co_last_name" required
+                            maxlength="200"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_last_name.errors }">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_last_name.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_last_name.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.LAST_NAME }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-2 inner_col margin_top5">
+                    <mat-form-field appearance="fill" style="margin-bottom: -12px;">
+                        <mat-label>Date Of Birth</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="co_dob" required
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_dob.errors }" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_dob.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_dob.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.DOB
+                            }}</span>
+                    </span>
+                </div>
+    
+                <div class="col-sm-2 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Mobile Number" formControlName="co_mobile_number" required
+                            maxlength="10"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_mobile_number.errors }">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_mobile_number.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_mobile_number.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.MOBILE_NUMBER }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput type="email" placeholder="Email Id" formControlName="co_email_id" maxlength="100">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2 inner_col">
+                    <mat-form-field>
+                        <input matInput placeholder="PAN Card Number" formControlName="pan_card"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.pan_card.errors }" required
+                            maxlength="10">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.pan_card.errors" class="error">
+                        <span *ngIf="thirdStep.controls.pan_card.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.PAN_CARD_NUMBER }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-2 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Aadhar Number" formControlName="aadhar_number"
+                            maxlength="12">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12">
+                    <h4 style="margin-top: 20px;">Current Address Details</h4>
+                </div>
+                <div class="col-sm-4 inner_col innter_div_input_margin1">
+                    <mat-form-field>
+                        <input matInput placeholder="Address LIne 1" formControlName="addressLine1" maxlength="200"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.addressLine1.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.addressLine1.errors" class="error">
+                        <span *ngIf="thirdStep.controls.addressLine1.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.ADDRESS_LINE1 }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col innter_div_input_margin1">
+                    <mat-form-field>
+                        <input matInput placeholder="Address Line 2" formControlName="addressLine2" maxlength="200">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 inner_col innter_div_input_margin1">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Pincode" formControlName="pincode"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.pincode.errors }" (input)="pincodeEvent($event.target.value)" required
+                            maxlength="6">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.pincode.errors" class="error">
+                        <span *ngIf="thirdStep.controls.pincode.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.PIN_CODE
+                            }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <mat-label>State </mat-label>
+                        <mat-select [(value)]="stateID" id="state"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.city.errors }"
+                          formControlName="state">
+                          <mat-option *ngFor="let stat of stateData" [value]="stat.stateID">
+                            {{stat.stateName}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <span *ngIf="isSubmitThirdStep && thirdStep.controls.state.errors" class="error">
+                        <span *ngIf="thirdStep.controls.state.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.STATE
+                            }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <mat-label>District </mat-label>
+                        <mat-select [(value)]="district" id="distric"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.district.errors }"
+                          formControlName="district">
+                          <mat-option *ngFor="let district of districtData" [value]="district.districtID">
+                            {{district.districtName}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.distric.errors" class="error">
+                        <span *ngIf="thirdStep.controls.distric.errors">{{validationMessage.PROVIDE_DETAILS_SCREEN.DISTRIC}}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <mat-label>City </mat-label>
+                        <mat-select [(value)]="cityID" id="city"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.city.errors }"
+                          formControlName="city">
+                          <mat-option *ngFor="let city of cityData" [value]="city.cityID">
+                            {{city.cityName}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.city.errors" class="error">
+                        <span *ngIf="thirdStep.controls.city.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.CITY
+                            }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-12" align="center">
+                    <button mat-button color="primary" class="btn btn_margin">Next >></button>
+                </div>
+            </div>
+        </form> -->

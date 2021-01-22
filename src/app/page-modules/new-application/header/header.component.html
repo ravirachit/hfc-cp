@@ -1,0 +1,15 @@
+
+  <div class="main_header">
+    <div class="header_manu_section">
+    <mat-icon class="custom_mat_icons web_menu">menu</mat-icon>
+    <mat-icon class="custom_mat_icons mob_menu" (click)="sideNavService.openNav($event)">menu</mat-icon>
+      <p><a>Dashboard</a></p>
+    </div>
+      <!-- <a>Sanction</a>
+      <a>Technical</a> -->
+        <div (click)="logout()" class="logout_sec">
+          <img src="assets/new_images/logout.svg" class="header_logout_img">
+          <div>Logout</div>
+        </div>
+    
+  </div>

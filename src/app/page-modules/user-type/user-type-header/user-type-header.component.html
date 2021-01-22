@@ -1,0 +1,57 @@
+<div class="dashboard_navbar1 web_menu">
+    <div class="nav_container1">
+        <div class="headerNav_Link1">
+            <a [routerLink]="['/user-type']" class="header_logo_anch"><img src="assets/new_images/housing-logo.png" height="50"></a>
+            <a [routerLink]="['/user-type']" class="activeSty1">Dashboard</a>
+            <a [routerLink]="['/faq']">FAQ</a>
+            <a [routerLink]="['/customerSupport']">Help & Support</a>
+        </div>
+        <div class="profile_icon_div">
+            <div>
+                <div class="display-flex">
+                    <img src="assets/new_images/notification.svg" class="notification_icon">
+                    <div class="profile_circle">RK</div>
+                    <div class="user_name">Ravi Kumar<br><small class="last_login">Last Login:&nbsp;<span>21 Dec, 2020 04:17pm</span></small></div>
+                    <div class="dropdown theme-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="color: white;"><img src="assets/new_images/dots.svg"
+                                class="Heaer_profile_Menu_icon"></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Update Profile</a>
+                            <a class="dropdown-item" [routerLink]="['/']">Sign Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="dashboard_navbar1 mob_menu">
+    <div class="nav_container1">
+        <div class="headerNav_Link1 ">
+            <a [routerLink]="['/user-type']" class="header_logo_anch"><img src="assets/new_images/housing-logo.png" height="50"></a>
+        </div>
+        <div class="profile_icon_div">
+            <div>
+                <div class="display-flex">
+                    <img src="assets/new_images/notification.svg" class="notification_icon">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" class="more_vert_icon" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+                    <mat-menu #menu="matMenu">
+                        <a class="dropdown-item">
+                            <div class="profile_circle">RK</div>
+                            <div class="user_name">Ravi Kumar<br><small class="last_login">Last Login:&nbsp;<span>21 Dec, 2020 04:17pm</span></small></div>
+                        </a>
+                        <a [routerLink]="['/user-type']" class="activeSty1 dropdown-item">Dashboard</a>
+                        <a class="dropdown-item" href="#">Update Profile</a>
+                        <a class="dropdown-item" [routerLink]="['/faq']">FAQ</a>
+                        <a class="dropdown-item" [routerLink]="['/customerSupport']">Help & Support</a>
+                        <a class="dropdown-item" [routerLink]="['/']">Sign Out</a>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+
+  .login-container-inside-section{
+    padding-left: 44px;
+    text-align: left;
+}
+.logo-image-section{
+  margin-left: -44px;
+}
+.logo-image-section img{  
+  height: 80px;
+  margin: 15px 0px 20px 0px;
+}
+.login-content{
+  margin-top: -14px;
+  opacity: 0.8;
+  font-size: 12px;
+}
+.login-section{
+  height: 450px;
+  width: 375px;
+  position: absolute;
+  margin-left: 15%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 11%;
+  position: absolute;
+  border-radius: 3px;
+  background-color: white;
+}
+.login-input-section{
+  height: 45px;
+  background: white;
+  width: 86%;
+  box-shadow: 8px 9px 17px #00000017;
+  margin-top: 32px;
+}
+.login-footer{
+  bottom: 10px;
+  position: absolute;
+  font-size: 12px;
+  opacity: .6;
+}
+p{
+  margin-right: 47px;
+  margin-top: 3px;
+}
+.login-btn{
+  width: 145px;
+  line-height: 1px;
+  background: #1f5386;
+  box-shadow: none;
+  color: #FFFFFF;
+  padding: 20px;
+  font-weight: 400;
+  font-size: 15px;
+  border-radius: 3px;
+  letter-spacing: 0.6px;
+}
+.input_header{
+    color: #1f5386;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.page_title{
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.btn-section{
+margin-top: 35px;
+}
+.resend_otp_link{
+    font-size: 12px;
+    margin-top: 8px;
+    color:#1f5386;
+    cursor: pointer;
+}
+.error-msg{
+  color: red;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+@media (max-width:600px){
+.login-section {
+  margin-left: 0% !important;
+  margin-top: 28%;
+}
+}

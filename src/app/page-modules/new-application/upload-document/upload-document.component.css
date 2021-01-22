@@ -1,0 +1,97 @@
+.hiddenFileInput > input{
+    height: 230px;
+    width: 560px;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+  }
+  .hiddenFileInput{
+    border: 1px dashed #afaaaa;
+    width: 560px;
+    height: 230px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+  h3{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 10px;
+    padding-top: 12px;
+    margin-bottom: 0px;
+}
+h4{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 10px;
+    padding-top: 60px;
+    margin-bottom: 20px;
+}
+.inner_content{
+    margin-top: 72px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
+.theme_color{
+    color: #1f5386;
+}
+.upload_icon{
+    color: #1f5386 !important;
+    font-size: 45px !important;
+    margin-left: -24px;
+    opacity: 0.9;
+}
+.btn{
+    line-height: 1px;
+    background: #1f5386;
+    box-shadow: none;
+    color: #FFFFFF;
+    padding: 20px 35PX;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 3px;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+    margin-top: 110px;
+}
+.uploaded_img{
+    height: 265px;
+    width: 310px;
+    margin-top: 0px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.card_img_list{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2) !important;
+    height: 135px;
+    width: 265px;
+    margin-right: 35px;
+}
+.flex_card_img_list{
+    display: flex;
+}
+.flex_card_img_list .p_label{
+    font-size: 11px;
+    opacity: .6;
+    margin-bottom: -3px;
+    width: 108px;
+    margin-top: 6px;
+}
+.flex_card_img_list .p_value{
+    font-size: 12px;
+    width: 108px;
+}
+.uploaded_bg_img{
+    margin-top: -15px;
+    margin-left: -6px;
+    border-radius: 5px;
+    height: 134px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.margin_top25{
+    margin-top: 25px;
+}

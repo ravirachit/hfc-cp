@@ -1,0 +1,226 @@
+
+
+  [type=radio]+label:after, [type=radio]+label:before {
+    content: none !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 4px;
+    width: 0px !important;
+    height: 0px !important;
+    z-index: 0;
+    transition: .28s ease;
+}
+  
+  .donate-now input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+  }
+ 
+  .radio-toolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+
+  .radio-toolbar label {
+    display: inline-block;
+    padding: 2px 12px 27px 10px;
+    margin: 0px 16px 0px 0px;
+    font-size: 13px;
+    border: 1.6px solid #1f5386;
+    border-radius: 3px;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+    background-color: #1f5386;
+    color: #fff;
+    font-size: 13px;
+    border-color:  #1f5386;
+}
+h3{
+    font-size: 18px;
+    font-weight: 500;
+}
+h4{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+h5{
+    font-size: 13px;
+    font-weight: 500;
+}
+.additional_filed {
+    font-weight: 800 !important;
+    color: black !important;
+}
+.inner_col{
+    margin-bottom: 25px;
+}
+.terms_condition{
+    margin-top: 20px;
+}
+.terms_condition a{
+    font-weight: 600;
+}
+.btn{
+    line-height: 1px;
+    background: #1f5386;
+    box-shadow: none;
+    color: #FFFFFF;
+    padding: 20px 35PX;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 3px;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+    margin-top: 18px;
+}
+.proceed_btn{
+    padding: 20px 18px;
+    margin-top: 5px;
+}
+.flex_display{
+    display: flex;
+    cursor: pointer;
+    width: 185px;
+    border: 2px solid #1f5386;
+    padding: 10px 0px 0px 0px;
+    height: 40px;
+    border-radius: 3px;
+    color: #1f5386;
+}
+.margin_top5{
+  margin-top: 5px;
+}
+.flex_p{
+  margin-top: -3px;
+  font-size: 22px;
+  margin-right: 5px;
+}
+.otp_instruction{
+    font-size: 13px;
+    color: black;
+    opacity: .7;
+    margin-bottom: 40px;
+    margin-top: -8px;
+}
+.resend_otp_link{
+    font-size: 12px;
+    margin-top: 8px;
+    color:#1f5386;
+    cursor: pointer;
+    margin-left: -200px;
+    margin-bottom: 25px;
+}
+.btn_margin{
+    margin-top: 15px;
+}
+.innter_div_input_margin{
+    margin-top: 35px;
+}
+.innter_div_input_margin1{
+    margin-top: 20px;
+}
+.emi_remaining_notes{
+    font-size: 12px;
+    opacity: .8;
+    margin-top: -3px;
+}
+.cancel_btn{
+    line-height: 1px;
+    box-shadow: none;
+    background-color: transparent;
+    color: #1f5386;
+    padding: 19px 45PX;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 3px;
+    border: 1px solid #1f5386;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+    margin-top: 18px;
+    margin-right: 15px;
+}
+
+/* slider animation */
+
+  .selected {
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+  }
+  
+  .dismiss {
+    animation: slide-out 0.5s forwards;
+    -webkit-animation: slide-out 0.5s forwards;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      -webkit-transform: translateX(100%);
+    }
+    100% {
+      -webkit-transform: translateX(0%);
+    }
+  }
+  
+  @-webkit-keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @-webkit-keyframes slide-out {
+    0% {
+      -webkit-transform: translateX(0%);
+    }
+    100% {
+      -webkit-transform: translateX(100%);
+    }
+  }
+
+  .margin_top25{
+    margin-top: 25px;
+  }
+  .bluec{
+    background-color: red;
+  }
+  .margin_bottom15{
+    margin-bottom: 15px !important;
+  }
+
+  .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover, .nav-tabs .nav-item.open .nav-link, .nav-tabs .nav-item.open .nav-link:focus, .nav-tabs .nav-item.open .nav-link:hover {
+    color: #fff;
+    border-color: transparent;
+    background-color:#1f5386 !important;
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+  margin-right: 10px !important;
+}
+
+
+/* Responsive style */
+@media (max-width:600px){
+  .radio-toolbar label {
+    margin: 0px 16px 15px 0px !important;
+  }
+  .nav-tabs .nav-link {
+    margin-bottom: 12px !important;
+  }
+}

@@ -1,0 +1,283 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: white !important;}
+
+.body-background{
+    background-image: url("assets/new_images/banner3.0");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.sidebar {
+    background-image: url('assets/new_images/sidebar-house.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 220px;   
+    color: #fff;
+    height: 100vh;
+}
+.main-container{
+    margin: 80px 25px 200px 265px;
+}
+.mat-toolbar.mat-primary {
+    background: #1f5386 !important;
+    color: #fff;
+}
+.bulet {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+    border-radius: 100%;
+    right: 19px;
+    margin-top: 22px;
+
+    &::after {
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: none;
+        position: absolute;
+        transform: scale(1.2);
+        border: 1px solid #31c300;
+        border-radius: 100%;
+    }
+
+    &::before {
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #31c300;
+        position: absolute;
+        border-radius: 100%;
+        transform: scale(.8);
+    }
+}
+
+
+.buletactive {
+    &::after {
+        opacity: .5;
+        background: #31c300;
+        animation: scale 1.5s linear infinite
+    }
+
+    @keyframes scale {
+        from {
+            transform: scale(1);
+            opacity: .5;
+        }
+
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+}
+
+.logd {
+    &::after {
+        border: 1px solid #ccc;
+    }
+
+    &::before {
+        background: #ccc;
+    }
+}
+.mat-drawer.mat-drawer-side {
+    z-index: 9999 !important;
+  }
+  .mat-drawer-inner-container {
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pagelink {
+    align-items: center;
+    margin-bottom: 18%;
+    font-weight: 700;
+    position: relative;
+    font-size: 12px;
+    line-height: 1;
+    margin-left: -60px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        height: 142%;
+        top: 124%;
+        background: #fff;
+        width: 1px;
+        top: 39px;
+        right: 26px;
+    }
+
+    &:last-child {
+        &:after {
+            display: none;
+        }
+    }
+
+    img {
+        height: 34px;
+        margin-bottom: 6px;
+    }
+}
+
+.logout_Link {
+    cursor: pointer;
+}
+
+.pageactive {
+    &::after {
+        background: #31c300;
+        width: 2px;
+    }
+}
+
+.logout {
+    position: fixed;
+    bottom: 20px;
+    z-index: 9;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    left: 24%;
+
+    img {
+        margin-right: 9px;
+        height: 20px;
+    }
+}
+.error_msg{
+    font-size: 11px;
+    color: red;
+}
+.custome-Modal-css .modal-dialog{
+    width: 500px !important;
+    border-radius: 30px !important;
+    border: 0px solid !important;
+  }
+.custome-Modal-css .modal-content {
+    border-radius: 20px !important;
+}
+
+
+
+
+
+
+
+// Custom material css
+.mat-slider-horizontal .mat-slider-track-wrapper {
+    height: 5px !important;
+}
+.mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label {
+    background-color:  #1f5386;
+}
+.otp-input{
+    width: 42px !important;
+}
+
+
+// custom css for range slider
+// ::ng-deep {
+    .custom-slider .ng5-slider .ng5-slider-bar {
+      background:  #1f5386;
+      height: 5px;
+    }
+    .custom-slider .ng5-slider .ng5-slider-selection {
+      background: #1f5386;
+    }
+  
+    .custom-slider .ng5-slider .ng5-slider-pointer {
+      width: 20px;
+      height: 20px;
+      top: -9px;
+      bottom: 0;
+      background-color:  #1f5386 !important;
+    }
+    .ng5-slider .ng5-slider-pointer {
+        background-color:  #1f5386 !important;
+        width: 22px !important;
+        height: 22px !important;
+        top: -10px !important;
+    }
+    .ng5-slider .ng5-slider-pointer:after {
+        top: 7px !important;
+        left: 7px !important;
+    }
+    .custom-slider .ng5-slider .ng5-slider-pointer:after {
+      display: none;
+    }
+  
+    .custom-slider .ng5-slider, .ng5-slider-bubble {
+        bottom: -29px !important;
+        font-size: 19px;
+        color:  #1f5386;
+        font-weight: 600;
+        visibility: visible !important; 
+    }
+    .ng5-slider-span .ng5-slider-bubble, .ng5-slider-model-value{
+        bottom: 14px !important;
+        font-size: 20px !important;
+        color: #1f5386 !important;
+    }
+    .ng5-slider.animate .ng5-slider-bubble.ng5-slider-limit {
+        opacity: 1!important;
+    }
+    .custom_mat_edit_icon{
+        color: #6fc105 !important;
+        font-weight: 500 !important;
+    }
+  
+    // .custom-slider .ng5-slider .ng5-slider-floor , .custom-slider .ng5-slider .ng5-slider-ceil{
+    //   display: none;
+    // }
+  
+    .custom-slider .ng5-slider .ng5-slider-limit {
+      font-weight: bold;
+      color: #1f5386;
+    }
+  
+    .custom-slider .ng5-slider .ng5-slider-tick {
+      width: 1px;
+      height: 10px;
+      margin-left: 4px;
+      border-radius: 0;
+      background: #ffe4d1;
+      top: -1px;
+    }
+  
+    .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+      background:  #1f5386;
+    }
+    .ng5-slider .ng5-slider-tick-legend {
+        top: 18px !important;
+        margin-left: 7px !important;
+        width: 66px;
+    }
+    .mat-form-field-disabled .mat-form-field-underline{
+        border-bottom: 1px dashed #ada8a8f0 !important
+    }
+
+
+    // Responsive style
+    @media (max-width:600px){
+        .main-container{
+            margin: 80px 25px 200px 25px;
+        }
+    }
+  

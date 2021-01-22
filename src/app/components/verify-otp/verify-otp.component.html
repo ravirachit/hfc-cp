@@ -1,0 +1,20 @@
+<div class="body-background">
+    <div class="login-section">
+        <div class="login-container-inside-section">
+            <div class="logo-image-section" align="center">
+                <img src="assets/new_images/housing-logo.png">
+            </div>
+            <h2 class="input_header">Enter the 6 digit OTP sent to you <br>at {{customerMobile}}</h2>
+            <form>
+                <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                <p class="error-msg">{{resError}}</p>
+                <p class="resend_otp_link" *ngIf="count !== 0">Resend OTP in 00:{{counter$ | async}}</p>
+                <p class="resend_otp_link" *ngIf="count == 0" (click)="resendOTP()">Resend OTP</p>
+                <div class="btn-section">
+                    <button mat-button color="primary" class="login-btn" (click)="onVerify()">Verify OTP</button>
+                </div>
+            </form>
+            <p class="login-footer">@2020, All Rights Reserved.</p>
+        </div>
+    </div>
+</div>

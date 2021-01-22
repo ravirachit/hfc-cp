@@ -1,0 +1,54 @@
+.main_header{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  background:  #1f5386;
+  width: 100%;
+  top: 0;
+  padding-left: 40px;
+  height: 56px;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: .4px;
+  padding-right: 260px;
+}
+.custom_mat_icons{
+  font-size: 26px !important;
+  margin-top: 16px;
+}
+.header_manu_section{
+  display: flex;
+}
+.header_manu_section p{
+  margin: 19px 0px 0px 25px;
+  font-size: 14px;
+}
+.header_logout_img{
+  height: 28px;
+  width: 44px;
+  margin-bottom: -6px;
+  margin-top: 6px;
+}
+.logout_sec{
+  cursor: pointer;
+}
+.mob_menu{
+  display: none;
+}
+.web_menu{
+  display: block;
+}
+
+/* Responsive style */
+@media (max-width:600px){
+  .main_header{
+    padding-left: 23px !important;
+    padding-right: 18px !important;
+  }
+  .mob_menu{
+    display: block;
+  }
+  .web_menu{
+    display: none;
+  }
+}

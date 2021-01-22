@@ -1,0 +1,1008 @@
+<!-- <app-sidebar></app-sidebar> -->
+<!-- For Basic Details & loan requirement inputs-->
+
+<div *ngIf="isFirstStep">
+    <h3>Loan basic requirement inputs</h3>
+    <p>Type of loan you like to avail</p>
+    <div class="radio-toolbar">
+        <ng-container *ngFor="let loanType of loanProductData;let i=index;">
+            <input type="radio" id="{{loanType.productID}}" name="loanTypeValue" value="{{loanType.productID}}"
+            (change)="onChangeLoanType($event.target.value)" [checked]="i==0">
+        <label for="{{loanType.productID}}" class="margin_bottom15">{{loanType.productName}}</label>
+        </ng-container>
+    </div><br>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>What is your residency status?</p>
+            <div class="radio-toolbar">
+                <ng-container *ngFor="let resType of residenceTypeData;let i=index;">
+                    <input type="radio" id="{{resType.typeDetailID}}" name="residanceTypeValue" value="{{resType.typeDetailID}}" [checked]="i==0"
+                    (change)="onChangeResidencyType($event.target.value)">
+                <label for="{{resType.typeDetailID}}">{{resType.typeDetailDisplayText}}</label>
+                </ng-container>
+            </div>
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-sm-6">
+            <p>Gender</p>
+            <div class="radio-toolbar">
+                <ng-container *ngFor="let gender of genderTypeData;let i=index;">
+                    <input type="radio" id="{{gender.typeDetailID}}" name="genderTypeValue" value="{{gender.typeDetailID}}" [checked]="i==0"
+                    (change)="onChangeResidencyType($event.target.value)">
+                <label for="{{gender.typeDetailID}}">{{gender.typeDetailDisplayText}}</label>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="firstStep" (ngSubmit)="onCreateLead(otpModalContent)">
+        <div class="row main_row_padding">
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput alphabetsOnly placeholder="First Name" formControlName="first_name"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.first_name.errors }" required
+                        maxlength="200">
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.first_name.errors" class="error">
+                    <span *ngIf="firstStep.controls.first_name.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.FIRST_NAME }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput alphabetsOnly placeholder="Middle Name" formControlName="middle_name"
+                        maxlength="200">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput alphabetsOnly placeholder="Last Name" formControlName="last_name" required
+                        maxlength="200"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.last_name.errors }">
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.last_name.errors" class="error">
+                    <span *ngIf="firstStep.controls.last_name.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.LAST_NAME }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col margin_top5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Date Of Birth (DD/MM/YYYY)</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob" required
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.dob.errors }" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.dob.errors" class="error">
+                    <span *ngIf="firstStep.controls.dob.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.DOB
+                        }}</span>
+                </span>
+            </div>
+
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly placeholder="Mobile Number" formControlName="mobile_number" required
+                        maxlength="10"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.mobile_number.errors }">
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.mobile_number.errors" class="error">
+                    <span *ngIf="firstStep.controls.mobile_number.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.MOBILE_NUMBER }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput type="email" placeholder="Email Id" formControlName="email_id" maxlength="100">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                        placeholder="Required Loan Amount" formControlName="required_loan_amount" required
+                        maxlength="12"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.required_loan_amount.errors }">
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.required_loan_amount.errors" class="error">
+                    <span *ngIf="firstStep.controls.required_loan_amount.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.REQUIRED_LOAN_AMOUNT }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field appearance="fill" style="margin-top: 6px;">
+                    <mat-label>Loan Purpose<span class="txt-red">*</span></mat-label>
+                    <mat-select disableOptionCentering formControlName="loan_purpose"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.loan_purpose.errors }">
+                        <mat-option *ngFor="let purpose of loanPurposeTypeData"
+                    [value]="purpose.loanPurposeID">
+                    {{purpose.loanPurposeName}}
+                </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.loan_purpose.errors" class="error">
+                    <span *ngIf="firstStep.controls.loan_purpose.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.LOAN_PURPOSE }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly placeholder="Required Tenure in Months"
+                        formControlName="required_tenure_in_months" required
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.required_tenure_in_months.errors }"
+                        maxlength="3">
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.required_tenure_in_months.errors" class="error">
+                    <span *ngIf="firstStep.controls.required_tenure_in_months.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.REQUIRED_TENURE_IN_MONTH }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field appearance="fill" style="margin-top: 6px;">
+                    <mat-label>Property Is Identified<span class="txt-red">*</span></mat-label>
+                    <mat-select formControlName="property_is_identified" [(value)]="property_is_identified"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.property_is_identified.errors }">
+                        <mat-option *ngFor="let isIdentified of questionValue" [value]="isIdentified.value">
+                            {{isIdentified.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.property_is_identified.errors" class="error">
+                    <span *ngIf="firstStep.controls.property_is_identified.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.PROPERTY_IS_IDENTIFIED }}</span>
+                </span>
+                <!-- <h5>Property Is Identified</h5>
+          <div class="radio-toolbar">           
+            <input type="radio" id="yes" name="isIdentified" value="new_loan" checked>
+            <label for="yes">Yes</label>
+        
+            <input type="radio" id="no" name="isIdentified" value="existing_loan">
+            <label for="no">No</label>
+        </div> -->
+            </div>
+
+            <div class="col-sm-4 inner_col">
+                <mat-form-field appearance="fill" style="margin-top: 6px;">
+                    <mat-label>Property Location<span class="txt-red">*</span></mat-label>
+                    <mat-select formControlName="property_location" [(value)]="property_location"
+                    [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.property_location.errors }">
+                        <mat-option *ngFor="let location of propertyLocationData" [value]="location.cityID">
+                            {{location.cityName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.property_location.errors" class="error">
+                    <span *ngIf="firstStep.controls.property_location.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.PROPERTY_LOCATION }}</span>
+                </span>
+            </div>
+            <!-- <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                        placeholder="Estimated Market Value" formControlName="estimated_market_value" maxlength="12"
+                        [ngClass]="{ 'is-invalid': isSubmitFirstStep && firstStep.controls.estimated_market_value.errors }">
+                </mat-form-field>
+                <span *ngIf="isSubmitFirstStep && firstStep.controls.estimated_market_value.errors" class="error">
+                    <span *ngIf="firstStep.controls.estimated_market_value.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.ESTIMATED_MARKET_VALUE }}</span>
+                </span>
+            </div> -->
+            <!-- <div class="col-sm-4 inner_col">
+            <mat-form-field appearance="fill" style="margin-top: 6px;">
+                <mat-label>Proposed Property Owner</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let qValue of questionValue" [value]="qValue.value">
+                        {{qValue.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div> -->
+
+
+            <div class="col-sm-12" align="center"><button mat-button color="primary" class="proceed_btn btn">Proceed
+                    >></button></div>
+        </div>
+    </form>
+</div>
+
+<!-- OTP Section -->
+<ng-template #otpModalContent let-modal>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 otp_inner_section" align="center">
+                <h3>Enter One-Time Password (OTP)</h3>
+                <P class="otp_instruction">Enter OTP received on your registered mobile {{newInputMobileNumber}} or to verify your
+                    contact details</P>
+                <form>
+                    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                <p class="error-msg">{{resError}}</p>
+                <p class="resend_otp_link" *ngIf="count !== 0">Resend OTP in 00:{{counter$ | async}}</p>
+                <p class="resend_otp_link" *ngIf="count == 0" (click)="resendOTP()">Resend OTP</p>
+                </form>
+                <div class="col-sm-12" align="center">
+                    <button type="button" aria-label="Close" class="cancel_btn" (click)="closeModal()">Cancel</button>
+                    <button mat-button color="primary" class="btn btn_margin" (click)="afterProceedOTP()" [disabled]="isDisabled">Verify
+                        OTP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Few Details Section for calculate eligibility -->
+<div class="selected" *ngIf="isThirdStep">
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class='nav-item applicantTab' role="tab" *ngFor="let applicant of persoanlDraftData; let index = index" [class]="index == currentTabIndex ? 'active' : 'applicantTab'" role="tab">
+            <a [ngClass]="index == currentTabIndex ? 'nav-link active' : 'applicantTab'" class="nav-link" data-toggle="tab" role="tab" (click)="setCurrentTabId(applicant.leadApplicantNumber,index)">
+                <span *ngIf="index == 0">Applicant</span>
+                <span *ngIf="index !== 0">Co-applicant {{index}}</span>
+            </a>
+        </li>
+    </ul>
+     <div *ngIf="persoanlDraftData && persoanlDraftData[currentTabIndex]" class="selected">
+        <h3 class="margin_top25">Provide few details for calculating your eligibility</h3>
+        <div class="row">
+            <div class="col-sm-5">
+                <p>What is your residency status?</p>
+                <div class="radio-toolbar">
+                    <ng-container *ngFor="let resType of residenceTypeData;let i=index;">
+                        <input type="radio" id="{{resType.typeDetailID}}" name="residanceTypeValue" value="{{resType.typeDetailID}}" [checked]="resType.typeDetailID==residencyTypeDetailsResID"
+                        (change)="onChangeResidencyType($event.target.value)">
+                    <label for="{{resType.typeDetailID}}">{{resType.typeDetailDisplayText}}</label>
+                    </ng-container>
+                </div>
+                <p>&nbsp;</p>
+            </div>
+            <div class="col-sm-4">
+                <p>Gender</p>
+                <div class="radio-toolbar">
+                    <ng-container *ngFor="let gender of genderTypeData;let i=index;">
+                        <input type="radio" id="{{gender.typeDetailID}}" name="genderTypeValue" value="{{gender.typeDetailID}}" [checked]="gender.typeDetailID==genderResTypeDetailsId"
+                        (change)="onChangeGender($event.target.value)">
+                    <label for="{{gender.typeDetailID}}">{{gender.typeDetailDisplayText}}</label>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <p>Proposed Property Owner</p>
+                <div class="radio-toolbar">
+                    <ng-container *ngFor="let proposedOwner of proposedPropertyOwnerTypeData;let i=index;">
+                        <input type="radio" id="{{proposedOwner.typeDetailID}}" name="isProposedPropertyOwner" value="{{proposedOwner.typeDetailID}}" [checked]="proposedOwner.typeDetailID==proposedPropertyOwnerResTypeId"
+                        (change)="onChangeProposedOwnerType($event.target.value)">
+                    <label for="{{proposedOwner.typeDetailID}}">{{proposedOwner.typeDetailDisplayText}}</label>
+                    </ng-container>
+                </div>
+            </div>
+    
+        </div>
+    
+        <form [formGroup]="thirdStep" (ngSubmit)="onPersonalDataSubmit()">
+            <div class="row innter_div_input_margin">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput alphabetsOnly placeholder="First Name" formControlName="co_first_name"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_first_name.errors }" required
+                            maxlength="200">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_first_name.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_first_name.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.FIRST_NAME }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput alphabetsOnly placeholder="Middle Name" formControlName="co_middle_name"
+                            maxlength="200">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput alphabetsOnly placeholder="Last Name" formControlName="co_last_name" required
+                            maxlength="200"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_last_name.errors }">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_last_name.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_last_name.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.LAST_NAME }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-2 inner_col margin_top5">
+                    <mat-form-field appearance="fill" style="margin-bottom: -12px;">
+                        <mat-label>Date Of Birth</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="co_dob" required
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_dob.errors }" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_dob.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_dob.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.DOB
+                            }}</span>
+                    </span>
+                </div>
+    
+                <div class="col-sm-2 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Mobile Number" formControlName="co_mobile_number" required
+                            maxlength="10"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_mobile_number.errors }">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_mobile_number.errors" class="error">
+                        <span *ngIf="thirdStep.controls.co_mobile_number.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.MOBILE_NUMBER }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput type="email" placeholder="Email Id" formControlName="co_email_id" maxlength="100">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-2 inner_col">
+                    <mat-form-field>
+                        <input matInput placeholder="PAN Card Number" formControlName="pan_card"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.pan_card.errors }" required
+                            maxlength="10">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.pan_card.errors" class="error">
+                        <span *ngIf="thirdStep.controls.pan_card.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.PAN_CARD_NUMBER }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-2 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Aadhar Number" formControlName="aadhar_number"
+                            maxlength="12">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12">
+                    <h4 style="margin-top: 20px;">Current Address Details</h4>
+                </div>
+                <div class="col-sm-4 inner_col innter_div_input_margin1">
+                    <mat-form-field>
+                        <input matInput placeholder="Address LIne 1" formControlName="addressLine1" maxlength="200"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.addressLine1.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.addressLine1.errors" class="error">
+                        <span *ngIf="thirdStep.controls.addressLine1.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.ADDRESS_LINE1 }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col innter_div_input_margin1">
+                    <mat-form-field>
+                        <input matInput placeholder="Address Line 2" formControlName="addressLine2" maxlength="200">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 inner_col innter_div_input_margin1">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Pincode" formControlName="pincode"
+                            [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.pincode.errors }" (input)="pincodeEvent($event.target.value)" required
+                            maxlength="6">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.pincode.errors" class="error">
+                        <span *ngIf="thirdStep.controls.pincode.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.PIN_CODE
+                            }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <mat-label>State </mat-label>
+                        <mat-select [(value)]="stateID" id="state"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.city.errors }"
+                          formControlName="state">
+                          <mat-option *ngFor="let stat of stateData" [value]="stat.stateID">
+                            {{stat.stateName}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <span *ngIf="isSubmitThirdStep && thirdStep.controls.state.errors" class="error">
+                        <span *ngIf="thirdStep.controls.state.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.STATE
+                            }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <mat-label>District </mat-label>
+                        <mat-select [(value)]="district" id="distric"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.district.errors }"
+                          formControlName="district">
+                          <mat-option *ngFor="let district of districtData" [value]="district.districtID">
+                            {{district.districtName}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.district.errors" class="error">
+                        <span *ngIf="thirdStep.controls.district.errors">{{validationMessage.PROVIDE_DETAILS_SCREEN.DISTRIC}}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <mat-label>City </mat-label>
+                        <mat-select [(value)]="cityID" id="city"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.city.errors }"
+                          formControlName="city">
+                          <mat-option *ngFor="let city of cityData" [value]="city.cityID">
+                            {{city.cityName}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    <span *ngIf="isSubmitThirdStep && thirdStep.controls.city.errors" class="error">
+                        <span *ngIf="thirdStep.controls.city.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.CITY
+                            }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-12" align="center">
+                    <button mat-button color="primary" class="btn btn_margin">Next >></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <!-- <mat-tab-group [selectedIndex]="selectedTabValue.value" (selectedIndexChange)="selectedTabValue.setValue($event)">
+        <mat-tab *ngFor="let tab of applicantTabs; let index = index" [label]="tab.applicant" role="tab">
+            <h3 class="margin_top25">Provide few details for calculating your eligibility</h3>
+    <div class="row">
+        <div class="col-sm-4">
+            <p>What is your residency status?</p>
+            <div class="radio-toolbar">
+                <ng-container *ngFor="let resType of residenceTypeData;let i=index;">
+                    <input type="radio" id="{{resType.typeDetailID}}" name="residanceTypeValue" value="{{resType.typeDetailID}}" [checked]="i==0"
+                    (change)="onChangeResidencyType($event.target.value)">
+                <label for="{{resType.typeDetailID}}">{{resType.typeDetailDisplayText}}</label>
+                </ng-container>
+            </div>
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-sm-3">
+            <p>Gender</p>
+            <div class="radio-toolbar">
+                <ng-container *ngFor="let gender of genderTypeData;let i=index;">
+                    <input type="radio" id="{{gender.typeDetailID}}" name="genderTypeValue" value="{{gender.typeDetailID}}" [checked]="i==0"
+                    (change)="onChangeResidencyType($event.target.value)">
+                <label for="{{gender.typeDetailID}}">{{gender.typeDetailDisplayText}}</label>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <p>Proposed Property Owner</p>
+            <div class="radio-toolbar">
+                <input type="radio" id="yes" name="isProposedPropertyOwner" value="" checked>
+                <label for="yes">Yes</label>
+
+                <input type="radio" id="no" name="isProposedPropertyOwner" value="">
+                <label for="no">No</label>
+            </div>
+        </div>
+
+    </div>
+
+    <form [formGroup]="thirdStep" (ngSubmit)="onPersonalDataSubmit(applicantTabs.length)">
+        <div class="row innter_div_input_margin">
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput alphabetsOnly placeholder="First Name" formControlName="co_first_name"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_first_name.errors }" required
+                        maxlength="200">
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_first_name.errors" class="error">
+                    <span *ngIf="thirdStep.controls.co_first_name.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.FIRST_NAME }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput alphabetsOnly placeholder="Middle Name" formControlName="co_middle_name"
+                        maxlength="200">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput alphabetsOnly placeholder="Last Name" formControlName="co_last_name" required
+                        maxlength="200"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_last_name.errors }">
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_last_name.errors" class="error">
+                    <span *ngIf="thirdStep.controls.co_last_name.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.LAST_NAME }}</span>
+                </span>
+            </div>
+            <div class="col-sm-2 inner_col margin_top5">
+                <mat-form-field appearance="fill" style="margin-bottom: -12px;">
+                    <mat-label>Date Of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="co_dob" required
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_dob.errors }" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_dob.errors" class="error">
+                    <span *ngIf="thirdStep.controls.co_dob.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.DOB
+                        }}</span>
+                </span>
+            </div>
+
+            <div class="col-sm-2 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly placeholder="Mobile Number" formControlName="co_mobile_number" required
+                        maxlength="10"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.co_mobile_number.errors }">
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.co_mobile_number.errors" class="error">
+                    <span *ngIf="thirdStep.controls.co_mobile_number.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.MOBILE_NUMBER }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput type="email" placeholder="Email Id" formControlName="co_email_id" maxlength="100">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-2 inner_col">
+                <mat-form-field>
+                    <input matInput placeholder="PAN Card Number" formControlName="pan_card"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.pan_card.errors }" required
+                        maxlength="10">
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.pan_card.errors" class="error">
+                    <span *ngIf="thirdStep.controls.pan_card.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.PAN_CARD_NUMBER }}</span>
+                </span>
+            </div>
+            <div class="col-sm-2 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly placeholder="Aadhar Number" formControlName="aadhar_number"
+                        maxlength="12">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12">
+                <h4 style="margin-top: 20px;">Current Address Details</h4>
+            </div>
+            <div class="col-sm-4 inner_col innter_div_input_margin1">
+                <mat-form-field>
+                    <input matInput placeholder="Address LIne 1" formControlName="addressLine1" maxlength="200"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.addressLine1.errors }"
+                        required>
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.addressLine1.errors" class="error">
+                    <span *ngIf="thirdStep.controls.addressLine1.errors">{{
+                        validationMessage.PROVIDE_DETAILS_SCREEN.ADDRESS_LINE1 }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col innter_div_input_margin1">
+                <mat-form-field>
+                    <input matInput placeholder="Address Line 2" formControlName="addressLine2" maxlength="200">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4 inner_col innter_div_input_margin1">
+                <mat-form-field>
+                    <input matInput numbersOnly placeholder="Pincode" formControlName="pincode"
+                        [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.pincode.errors }" (input)="pincodeEvent($event.target.value)" required
+                        maxlength="6">
+                </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.pincode.errors" class="error">
+                    <span *ngIf="thirdStep.controls.pincode.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.PIN_CODE
+                        }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <mat-label>State </mat-label>
+                    <mat-select [(value)]="stateID" id="state"
+                    [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.city.errors }"
+                      formControlName="state">
+                      <mat-option *ngFor="let stat of stateData" [value]="stat.stateID">
+                        {{stat.stateName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <span *ngIf="isSubmitThirdStep && thirdStep.controls.state.errors" class="error">
+                    <span *ngIf="thirdStep.controls.state.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.STATE
+                        }}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <mat-label>District </mat-label>
+                    <mat-select [(value)]="district" id="distric"
+                    [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.district.errors }"
+                      formControlName="district">
+                      <mat-option *ngFor="let district of districtData" [value]="district.districtID">
+                        {{district.districtName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.distric.errors" class="error">
+                    <span *ngIf="thirdStep.controls.distric.errors">{{validationMessage.PROVIDE_DETAILS_SCREEN.DISTRIC}}</span>
+                </span>
+            </div>
+            <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <mat-label>City </mat-label>
+                    <mat-select [(value)]="cityID" id="city"
+                    [ngClass]="{ 'is-invalid': isSubmitThirdStep && thirdStep.controls.city.errors }"
+                      formControlName="city">
+                      <mat-option *ngFor="let city of cityData" [value]="city.cityID">
+                        {{city.cityName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <span *ngIf="isSubmitThirdStep && thirdStep.controls.city.errors" class="error">
+                    <span *ngIf="thirdStep.controls.city.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.CITY
+                        }}</span>
+                </span>
+            </div>
+            <div class="col-sm-12" align="center">
+                <button mat-button color="primary" class="btn btn_margin">Next >></button>
+            </div>
+        </div>
+    </form>
+        </mat-tab>
+    </mat-tab-group> -->
+</div>
+
+<!-- Income Details Section -->
+<div class="selected" *ngIf="isFourthStep">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class='nav-item applicantTab' role="tab" *ngFor="let applicant of persoanlDraftData; let index = index" [class]="index == currentIncomeTabIndex ? 'active' : 'applicantTab'" role="tab">
+            <a [ngClass]="index == currentIncomeTabIndex ? 'nav-link active' : 'applicantTab'" class="nav-link" data-toggle="tab" role="tab" (click)="setCurrentIncomeTabId(applicant.leadApplicantNumber,index)">
+                <span *ngIf="index == 0">Applicant</span>
+                <span *ngIf="index !== 0">Co-applicant {{index}}</span>
+            </a>
+        </li>
+    </ul>
+     <div *ngIf="incomeDraftData && incomeDraftData[currentIncomeTabIndex]" class="selected">
+    <h4 class="margin_top25">Income Details</h4>
+    <div class="row">
+        <div class="col-sm-4">
+    <h5 style="margin-top: 14px;">Employment Type?</h5>
+    <div class="radio-toolbar">
+        <input type="radio" id="salaried" name="incomeType" value="salaried"
+            (change)="onEmpTypeValueChange($event.target.value)" checked>
+        <label for="salaried">Salaried</label>
+        <!-- 
+        <input type="radio" id="self_employed_professional" name="incomeType" value="self_employed_professional"
+            (change)="onEmpTypeValueChange($event.target.value)">
+        <label for="self_employed_professional">Self Employed Professional</label> -->
+
+        <input type="radio" id="self_employed" name="incomeType" value="self_employed"
+            (change)="onEmpTypeValueChange($event.target.value)">
+        <label for="self_employed">Self Employed</label>
+    </div>
+</div>
+<div class="col-sm-4" *ngIf="isAddressSameAsApplicant">
+    <h5 style="margin-top: 14px;">Address Same as Applicant</h5>
+    <div class="radio-toolbar">
+        <input type="radio" id="yes" name="isSameAddress" value="yes" checked>
+        <label for="yes">Yes</label>
+
+        <input type="radio" id="no" name="isSameAddress" value="no">
+        <label for="no">No</label>
+    </div>
+</div>
+</div>
+    <p>&nbsp;</p>
+
+    <form [formGroup]="fourthStep" (ngSubmit)="onCheckEligibility()">
+        <div *ngIf="forSalaried">
+            <div class="row main_row_padding">
+                <div class="col-sm-4 inner_col" *ngIf="isIncomeAdditionalField">
+                    <mat-form-field appearance="fill" style="margin-top: 6px;">
+                        <mat-label>Relationship With Applicant<span class="txt-red">*</span></mat-label>
+                        <mat-select formControlName="relationship_with_applicant" >
+                            <mat-option *ngFor="let relation of RelationshipTypeData" [value]="relation.typeDetailID">
+                                {{relation.typeDetailDisplayText}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-4 inner_col" *ngIf="isIncomeAdditionalField">
+                    <mat-form-field appearance="fill" style="margin-top: 6px;">
+                        <mat-label>Is Income Considered<span class="txt-red">*</span></mat-label>
+                        <mat-select formControlName="is_income_considered" (selectionChange)="getIsIncomeConsideredValue($event)">
+                            <mat-option *ngFor="let qValue of questionValue" [value]="qValue.value">
+                                {{qValue.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <ng-container *ngIf="isIncomeRemainingFields">
+            <div class="row main_row_padding">
+                
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="Your Monthly Gross Income" maxlength="12"
+                            formControlName="monthly_cross_income"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.monthly_cross_income.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.monthly_cross_income.errors" class="error">
+                        <span *ngIf="fourthStep.controls.monthly_cross_income.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.MONTHLY_CROSS_INCOME }}</span>
+                    </span>
+                </div>
+                <!-- <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator="," placeholder="Your Annual Bonus? (If any)" maxlength="12" formControlName="annual_bonus" [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.annual_bonus.errors }" required>
+                </mat-form-field>
+                <span *ngIf="isSubmitFourthStep && fourthStep.controls.annual_bonus.errors" class="error">
+                    <span
+                      *ngIf="fourthStep.controls.annual_bonus.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.ANNUAL_BONUS }}</span>
+                  </span>
+            </div> -->
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field appearance="fill" style="margin-top: 6px;">
+                        <mat-label>Additional Income Type</mat-label>
+                        <mat-select formControlName="additionalIncomeType"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.additionalIncomeType.errors }">
+                            <mat-option *ngFor="let incomeType of additionalIncomeTypeData" [value]="incomeType.typeDetailID">
+                                {{incomeType.typeDetailDisplayText}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.additionalIncomeType.errors" class="error">
+                        <span *ngIf="fourthStep.controls.additionalIncomeType.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.IS_SALARIED_CREDITED_IN_BANK }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field class="">
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="Additional Incomes (Optional)" formControlName="additional_income"
+                            maxlength="12">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="How much do you pay as EMI? (If any)" maxlength="12"
+                            formControlName="pay_as_emi"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.pay_as_emi.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.pay_as_emi.errors" class="error">
+                        <span *ngIf="fourthStep.controls.pay_as_emi.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.PAY_AS_EMI }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field appearance="fill" style="margin-top: 6px;">
+                        <mat-label>Is Salary Credited in Bank</mat-label>
+                        <mat-select formControlName="is_salaried_credited_in_bank"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.is_salaried_credited_in_bank.errors }">
+                            <mat-option *ngFor="let qValue of questionValue" [value]="qValue.value">
+                                {{qValue.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.is_salaried_credited_in_bank.errors"
+                        class="error">
+                        <span *ngIf="fourthStep.controls.is_salaried_credited_in_bank.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.IS_SALARIED_CREDITED_IN_BANK }}</span>
+                    </span>
+                </div>
+            </div>
+
+            <h4>Work Details</h4>
+            <div class="row main_row_padding">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput placeholder="Company Name" formControlName="company_name"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.company_name.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.company_name.errors" class="error">
+                        <span *ngIf="fourthStep.controls.company_name.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.COMPANY_NAME }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Total work experience (Years)" maxlength="2"
+                            formControlName="total_work_experience"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.total_work_experience.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.total_work_experience.errors" class="error">
+                        <span *ngIf="fourthStep.controls.total_work_experience.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.TOTAL_WORK_EXPERIENCE }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Retirement Age (Max 65)" maxlength="2"
+                            formControlName="retirement_age"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.retirement_age.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.retirement_age.errors" class="error">
+                        <span *ngIf="fourthStep.controls.retirement_age.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.RETIREMENT_AGE }}</span>
+                    </span>
+                </div>
+            </div>
+        </ng-container>
+        </div>
+
+        <div *ngIf="forSelfEmployedProfessional">
+            <div class="row main_row_padding">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="Your Gross Total Income (Annual)" maxlength="12"
+                            formControlName="annual_gross_total_income"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.annual_gross_total_income.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.annual_gross_total_income.errors"
+                        class="error">
+                        <span *ngIf="fourthStep.controls.annual_gross_total_income.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.ANNUAL_GROSS_INCOME }}</span>
+                    </span>
+                </div>
+                <!-- <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="Your Income Tax Paid" maxlength="12" formControlName="income_tax_paid"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.income_tax_paid.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.income_tax_paid.errors" class="error">
+                        <span *ngIf="fourthStep.controls.income_tax_paid.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.INCOME_TAX_PAID }}</span>
+                    </span>
+                </div> -->
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Total Monthly Obligation (sum of all EMIs)"
+                            maxlength="12" formControlName="total_monthly_obligation"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.total_monthly_obligation.errors }"
+                            required>
+                    </mat-form-field>
+                    <p class="emi_remaining_notes">Enter EMIs if remaining tenure is more than 12 months</p>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.total_monthly_obligation.errors"
+                        class="error">
+                        <span *ngIf="fourthStep.controls.total_monthly_obligation.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.TOTAL_MONTHLY_OBLIGATION }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="How much do you pay as EMI? (If any)" maxlength="12"
+                            formControlName="pay_as_emi"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.pay_as_emi.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.pay_as_emi.errors" class="error">
+                        <span *ngIf="fourthStep.controls.pay_as_emi.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.PAY_AS_EMI }}</span>
+                    </span>
+                </div>
+            </div>
+
+            <h4>Work Details</h4>
+            <div class="row main_row_padding">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Total Work Experience (Years)" maxlength="12"
+                            formControlName="total_work_experience"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.total_work_experience.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.total_work_experience.errors" class="error">
+                        <span *ngIf="fourthStep.controls.total_work_experience.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.TOTAL_WORK_EXPERIENCE }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput placeholder="Company Name" formControlName="company_name"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.company_name.errors }">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.company_name.errors" class="error">
+                        <span *ngIf="fourthStep.controls.company_name.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.COMPANY_NAME }}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="forSelfEmployed">
+            <div class="row main_row_padding">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator=","
+                            placeholder="Your Gross Total Income (Annual)" maxlength="12"
+                            formControlName="annual_gross_total_income"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.annual_gross_total_income.errors }"
+                            required>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.annual_gross_total_income.errors"
+                        class="error">
+                        <span *ngIf="fourthStep.controls.annual_gross_total_income.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.ANNUAL_GROSS_INCOME }}</span>
+                    </span>
+                </div>
+                <!-- <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator="," placeholder="Your Income Tax Paid" maxlength="12" formControlName="income_tax_paid" [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.income_tax_paid.errors }" required>
+                </mat-form-field>
+                <span *ngIf="isSubmitFourthStep && fourthStep.controls.income_tax_paid.errors" class="error">
+                    <span
+                      *ngIf="fourthStep.controls.income_tax_paid.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.INCOME_TAX_PAID }}</span>
+                  </span>
+            </div> -->
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Total Monthly Obligation (sum of all EMIs)"
+                            maxlength="12" formControlName="total_monthly_obligation"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.total_monthly_obligation.errors }"
+                            required>
+                    </mat-form-field>
+                    <p class="emi_remaining_notes">Enter EMIs if remaining tenure is more than 12 months</p>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.total_monthly_obligation.errors"
+                        class="error">
+                        <span *ngIf="fourthStep.controls.total_monthly_obligation.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.TOTAL_MONTHLY_OBLIGATION }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field appearance="fill" style="margin-top: 6px;">
+                        <mat-label>Filling Regular ITR<span class="txt-red">*</span></mat-label>
+                        <mat-select formControlName="isFillingRegularITR"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.isFillingRegularITR.errors }">
+                            <mat-option *ngFor="let qValue of questionValue" [value]="qValue.value">
+                                {{qValue.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.isFillingRegularITR.errors" class="error">
+                        <span *ngIf="fourthStep.controls.isFillingRegularITR.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.IS_FILING_REGULAR_ITR }}</span>
+                    </span>
+                </div>
+                <!-- <div class="col-sm-4 inner_col">
+                <mat-form-field>
+                    <input matInput numbersOnly prefix="₹" mask="separator" thousandSeparator="," placeholder="How much do you pay as EMI? (If any)" maxlength="12" formControlName="pay_as_emi" [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.pay_as_emi.errors }" required>
+                </mat-form-field>
+                <span *ngIf="isSubmitFourthStep && fourthStep.controls.pay_as_emi.errors" class="error">
+                    <span
+                      *ngIf="fourthStep.controls.pay_as_emi.errors">{{ validationMessage.PROVIDE_DETAILS_SCREEN.PAY_AS_EMI }}</span>
+                  </span>
+            </div> -->
+            </div>
+
+            <h4>Work Details</h4>
+            <div class="row main_row_padding">
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput numbersOnly placeholder="Total Business Vintage (Years)"
+                            formControlName="total_business_vintage"
+                            [ngClass]="{ 'is-invalid': isSubmitFourthStep && fourthStep.controls.total_business_vintage.errors }"
+                            required maxlength="12">
+                    </mat-form-field>
+                    <span *ngIf="isSubmitFourthStep && fourthStep.controls.total_business_vintage.errors" class="error">
+                        <span *ngIf="fourthStep.controls.total_business_vintage.errors">{{
+                            validationMessage.PROVIDE_DETAILS_SCREEN.TOTAL_BUSINESS_VINTAGE }}</span>
+                    </span>
+                </div>
+                <div class="col-sm-4 inner_col">
+                    <mat-form-field>
+                        <input matInput placeholder="Company Name" formControlName="company_name">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 flex_display" (click)="onAddCoApplicant();">
+            <p class="flex_p">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" class="font_weight_bold">add</mat-icon>
+            </p>ADD CO-APPLICANT
+        </div>
+
+        <div class="col-sm-12 terms_condition" align="center">
+            <mat-checkbox class="example-margin">I agree to the <a>Terms and Conditions</a></mat-checkbox>
+            <div class="btn-section">
+                <button mat-button color="primary" class="btn">Check Eligibility</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

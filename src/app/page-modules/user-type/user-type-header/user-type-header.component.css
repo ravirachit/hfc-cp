@@ -1,0 +1,175 @@
+.dashboard_navbar {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 65px;
+    z-index: 10;
+  }
+  .headerNav_Link{
+    display: flex;
+    margin-left: -24px;
+  }
+  .headerNav_Link a{
+    float: left;
+    display: block;
+    color: gray;
+    text-align: center;
+    padding: 6px 26px;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .header_logo_anch{
+    margin-top: -13px;
+  }
+  .nav_container{
+    margin: 14px 15px 10px 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .profile_icon_div{
+    display: inline-flex;
+    float: right;
+  }
+  .profile_icon_div a{
+    float: left;
+    display: block;
+    color: gray;
+    text-align: center;
+    padding: 14px 28px;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 2;
+  }
+  .Heaer_profile_Menu_icon{
+    margin-top: -11px;
+    margin-left: -10px;
+    cursor: pointer;
+  }
+  .profile_circle{
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    background:  #1f5386;
+    margin-top: 3px;
+    margin-right: 13px;
+    color: white;
+    line-height: 43px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0px;
+  }
+  .user_name{
+    color: #222C50;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 8px;
+    line-height: 16px;
+  }
+  .display-flex {
+    display: flex;
+    width: 123%;
+  }
+  .notification_icon{
+        height: 30px;
+        margin-right: 60px;
+        margin-top: 9px;
+  }
+
+  
+  
+.dashboard_navbar1 {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 10;
+  }
+  .headerNav_Link1 {
+    display: flex;
+    margin-left: -24px;
+    margin-top:-14px;
+  }
+  .headerNav_Link1 a {
+    float: left;
+    display: block;
+    color: gray;
+    text-align: center;
+    padding: 21px 30px 0px 30px;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 2;
+    overflow: visible;
+    border-bottom: 0;
+    position: relative;
+  }
+  .header_logo_anch {
+    margin-top: -13px;
+  }
+  img{
+    margin-top: 4px;
+}
+  .nav_container1 {
+    margin: 6px -12px 10px 15px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+
+  .activeSty1 {
+    margin-bottom: 5px;
+    color: #004788 !important;
+    font-weight: 600;
+    background-color: #f4faff !important;
+  }
+  .headerNav_Link1 a.activeSty1:before{
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 6px solid #fff;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+  }
+  .last_login {
+    color: #988989;
+    font-size: 11px;
+    opacity: .8;
+  }
+  .web_menu{
+    display: block;
+  }
+  .mob_menu{
+    display: none;
+  }
+
+  /* Responsive stylesheet */
+  @media (max-width:600px){
+    .web_menu{
+      display: none;
+    }
+    .mob_menu{
+      display: block;
+    }
+    .notification_icon{
+      margin-right: 30px;
+  }
+  .more_vert_icon{
+    margin-right: 30px;
+    font-size: 32px !important;
+    margin-top: 7px !important;
+  }
+  .mat-menu-content{
+    width: 196px !important;
+    font-size: 15px !important;
+    padding: 12px !important;
+}
+  
+}

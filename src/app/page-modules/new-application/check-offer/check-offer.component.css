@@ -1,0 +1,114 @@
+h3{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 10px;
+    margin-bottom: 11px;
+}
+h4{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+h5{
+    font: 12px;
+}
+.font_weight_bold{
+    font-weight: 600;
+}
+.flex_display{
+    display: flex;
+}
+.flex_p{
+    margin-top: -3px;
+    font-size: 22px;
+    margin-right: 5px;
+}
+.main_header_row{
+    color: #1f5386;
+    margin-top: 10px;
+}
+.float_right_sty{
+    float: right;
+    margin-right: 25px;
+}
+.mat_card_for_avial_loan{
+    width: 270px;
+    height: 130px;
+    border: 1.5px solid #1f5386;
+    text-align: center;
+    margin-top: -24px;
+    margin-bottom: 25px;
+}
+.avail_loan_upto{
+    font-size: 11px;
+    margin-bottom: -16px;
+}
+.perc_section{
+    margin-top: -19px;
+}
+.theme_color{
+    color: #1f5386;;
+}
+.mat_card_for_loan_selection{
+    padding: 30px 40px 55px 40px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.mat_card_for_loan_selection .row{
+    margin-top: 32px;
+}
+.mat_card_final_loan_offer{
+    background: #f9eded85;
+    margin-top: -1px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 35px 0px 25px 0px;
+    box-shadow: none!important;
+}
+.final_amt_font{
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 15px;
+}
+.margin_top22{
+    margin-top: 22px;
+}
+.btn{
+    line-height: 1px;
+    background: #1f5386;
+    box-shadow: none;
+    color: #FFFFFF;
+    padding: 20px 35PX;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 3px;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+    margin-top: 18px;
+}
+.footer_text{
+    font-size: 12px;
+    margin-top: 100px;
+}
+.info_icon{
+    font-size: 18px;
+    color: #1f5386;
+}
+.triangle_up {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 23px solid #f1e3e3cc;
+    transform: rotate(90deg);
+    margin-left: 1px;
+    margin-top: -1px;
+  }
+  .margin_top21{
+      margin-top: 21px;
+  }
+  .margin_top65{
+      margin-top: 65px;
+  }

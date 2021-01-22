@@ -1,0 +1,132 @@
+<app-user-type-header></app-user-type-header>
+<div class="container">
+    <div class="sliders">
+        <ng-container *ngFor="let img of img_list; let i = index">
+            <div class="slider" *ngIf="current == i" @fade>
+                <img class="img" [src]="img">
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+
+
+
+<div class="main-container1">
+    <div class="row card_section_margin">
+        <div class="col-sm-4 margin_left21">
+            <div class="new_application_link" align="center" (click)="onStartNewApplication()"><button class="new_application_text" class="apply_now_btn">Start a new application</button>
+                <div class="circle_div"><img src="assets/new_images/circle.png"></div>
+              </div>
+        </div>
+
+        <div class="col-sm-12 existing_user_section">
+            <div class="row">
+                <div class="col-sm-4" *ngFor="let loanType of userTypeDashboardData;">
+                    <div class="card loan_card">
+                        <div align="center" class="loanheader">
+                            <div class="user_type_batch">{{loanType.LoanType}}</div>
+                            <div class="loan_title_section">
+                                <div class="flex_header_element">
+                                    <span class="label_width">Loan Account Number:</span>
+                                    <p>{{loanType.LoanAccountNumber}}</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Amount:</span>
+                                    <p>Rs. {{loanType.LoanAmount}}</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Current Loan Status:</span>
+                                    <p>{{loanType.currentLoanStatus}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loan_details_card_container">
+                            <div class="btn-section" align="center">
+                                <button mat-button color="primary" class="view_details_button" (click)="onViewDetails(loanType.leadID)">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4">
+                    <div class="card loan_card">
+                        <div align="center" class="loanheader">
+                            <div class="user_type_batch">EXISTING</div>
+                            <div class="loan_title_section">
+                                <div class="flex_header_element">
+                                    <span class="label_width">Loan Account Number:</span>
+                                    <p>HFC234568844558</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Amount:</span>
+                                    <p>Rs. 1000000</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Current Loan Status:</span>
+                                    <p>Initial Approach</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="loan_details_card_container">
+                                <div class="btn-section" align="center">
+                                    <button mat-button color="primary" class="view_details_button">View Details</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card loan_card">
+                        <div align="center" class="loanheader">
+                            <div class="user_type_batch">EXISTING</div>
+                            <div class="loan_title_section">
+                                <div class="flex_header_element">
+                                    <span class="label_width">Loan Account Number:</span>
+                                    <p>HFC234568844558</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Amount:</span>
+                                    <p>Rs. 1000000</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Current Loan Status:</span>
+                                    <p>Assigned</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loan_details_card_container">
+                            <div class="btn-section" align="center">
+                                <button mat-button color="primary" class="view_details_button">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card loan_card">
+                        <div align="center" class="loanheader">
+                            <div class="user_type_batch">EXISTING</div>
+                            <div class="loan_title_section">
+                                <div class="flex_header_element">
+                                    <span class="label_width">Loan Account Number:</span>
+                                    <p>HFC234568844558</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Amount:</span>
+                                    <p>Rs. 1000000</p>
+                                </div>
+                                <div class="flex_header_element">
+                                    <span class="label_width">Current Loan Status:</span>
+                                    <p>Assigned</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loan_details_card_container">
+                            <div class="btn-section" align="center">
+                                <button mat-button color="primary" class="view_details_button">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>

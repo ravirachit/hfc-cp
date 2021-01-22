@@ -1,0 +1,30 @@
+.app-drawer-container {
+    flex: 1;
+  }
+  .app-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+  .logo-section{
+    text-align: center;
+    padding: 5px;
+  }
+  .logo-section img{
+    height: 45px;
+  }
+  .mob-side-nav-container{
+    position: static !important;
+  }
+  .sidebarwrap{
+    padding-top: 85px;
+  }
+  .static_line::after{
+    background: #31c300 !important;
+    width: 2px;
+  }
+  .navigation_link{
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
